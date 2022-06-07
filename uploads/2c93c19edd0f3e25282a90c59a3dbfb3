@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+const int SCORES = 3;
+int finalScore(int a, int m, int f){
+	double final;
+	int finals;
+	final = (0.2 * a) + (0.3 * m) + (0.4 * f);
+	finals = final;
+	return finals;
+}
+char grade(int score){
+	char gr;
+	if(score >= 85){
+		gr = 'A';
+	}
+	else if(score >= 75 && score < 85){
+		gr = 'B';
+	}
+	else if(score >= 60 && score < 75){
+		gr = 'C';
+	}
+	else if(score >= 45 && score < 60){
+		gr = 'D';
+	}
+	else{
+		gr = 'E';
+	}
+	return gr;
+}
+int main(void){
+	int students;
+	int fin;
+	int i;
+	int j;
+	char gLetter;
+	
+	printf("Please enter the number of students who attended the test: ");
+	scanf("%d", &students);
+	
+	int assign[students][SCORES];
+	
+	for (i = 0; i < students; ++i){
+		printf("Input student %d score\n", i+1);
+		printf("Assignment: ");
+		scanf("%d", &(assign[i][0]));
+		printf("Midterm: ");
+		scanf("%d", &(assign[i][1]));
+		printf("Final Exam: ");
+		scanf("%d", &(assign[i][2]));		
+	}
+	
+	printf("\n");
+	
+	for(i = 0; i < students; ++i){
+		printf("Student %d \n", i+1);
+		fin = finalScore(assign[i][0], assign[i][1], assign[i][2]);
+		printf("Final score: %d \n", fin);
+		gLetter = grade(fin);
+		printf("Grade: %c \n", gLetter);
+		printf("\n");
+	}
+	
+	return 0;
+}
